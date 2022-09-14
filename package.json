@@ -1,0 +1,29 @@
+{
+  "name": "teamprofilegenerator",
+  "version": "1.0.0",
+  "description": "A Team Profile Generator",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aurorayihe/TeamProfileGenerator.git"
+  },
+  "keywords": [],
+  "author": "Jiong Wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aurorayihe/TeamProfileGenerator/issues"
+  },
+  "homepage": "https://github.com/aurorayihe/TeamProfileGenerator#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}

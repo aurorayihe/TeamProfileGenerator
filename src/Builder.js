@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
-const Manager = require('./Manager');
-const Engineer = require('./Engineer');
-const Intern = require('./Intern');
+const Manager = require('../lib/Manager');
+const Engineer = require('../lib/Engineer');
+const Intern = require('../lib/Intern');
 const fs = require('fs');
 
 const teamInfo = [];
@@ -58,7 +58,6 @@ class Builder {
                     this.addEmployee();
                 } else if (answer.checkStatus === 'No') {
                     this.generatePage(teamInfo);
-                    this.quit();
                 }
             })
     }
@@ -106,8 +105,8 @@ class Builder {
                     message: 'Enter the github username of your new engineer',
                 },
             ])
-            .then((answer) => {
-                newEmployee = new Engineer(answer.name1, answer.id, answer.email, answer.github);
+            .then((answer1) => {
+                newEmployee = new Engineer(answer1.name1, answer1.id, answer1.email, answer1.github);
                 teamInfo.push(newEmployee);
                 this.checkStatus();
             })
@@ -135,8 +134,8 @@ class Builder {
                     message: 'Enter the school of your new Intern',
                 },
             ])
-            .then((answer) => {
-                newEmployee = new Intern(answer.name1, answer.id, answer.email, answer.school);
+            .then((answer2) => {
+                newEmployee = new Intern(answer2.name1, answer2.id, answer2.email, answer2.school);
                 teamInfo.push(newEmployee);
                 this.checkStatus();
             })
@@ -144,9 +143,49 @@ class Builder {
     }
 
     generatePage(info) {
-        console.log(info);
+        console.log("Generating webpage...");
+        const cardArray = [];
+        for (let i = 0; i < info.length; i++) {
+            const employeeCard = info[i].createCard();
+            cardArray.push(employeeCard);
+        }
+        const allInfo = cardArray.join('');
+        const pageHTML = `
+<!DOCTYPE html>
+<html lang="en">
         
-        return;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Bootstrap Components</title>
+</head>
+        
+<body>
+    <main class="container-fluid my-3">
+        
+    <section class="jumbotron">
+        <h1 class="display-2">My Team</h1>
+    </section>
+    <section class = 'row'>
+    ${allInfo}
+    </section>
+    </main>
+</body>
+        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        
+</html>
+        `
+        fs.writeFileSync('./dist/index.html', pageHTML, err => 
+        err ? console.log('Wrong!') : console.log("Created Team Page!")
+        );
+        this.quit();
     }
 
     quit(){

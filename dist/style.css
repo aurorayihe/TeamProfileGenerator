@@ -1,0 +1,38 @@
+.jumbotron{
+    text-align: center;
+    background-color: rgba(0, 94, 255, 0.593);
+    color: aliceblue;
+}
+
+.row {
+    justify-content: center;
+}
+
+.card{
+    border: solid rgb(202, 202, 202) 3px;
+    padding: 0;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.title {
+    background-color: rgba(0, 94, 255, 0.593);
+    color: aliceblue;
+    font-size: 50px;
+    width: 100%;
+    padding: 3px;
+}
+
+.title p{
+    margin-left: 10px;
+}
+
+.card li {
+    font-size: 30px;
+}
+
+
+
+
+
+
