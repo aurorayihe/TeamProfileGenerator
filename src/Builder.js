@@ -78,7 +78,6 @@ class Builder {
     }
 
     constructEmployee(answer){
-        console.log(answer);
         let newEmployee;
 
         if (answer === 'Engineer') {
@@ -189,6 +188,7 @@ class Builder {
     }
 
     quit(){
+        console.log("Page Created!");
         console.log('See you next time!');
         process.exit(0);
     }
