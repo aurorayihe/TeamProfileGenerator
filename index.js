@@ -1,11 +1,7 @@
-const inquirer = require("inquirer");
+const Builder = require('./lib/Builder');
 
 //Start the application
-const addAnother = false;
+const builder = new Builder();
 
-while (!addAnother){
-    inquirer
-        .prompt(
-            
-        )
-}
+builder.buildTeam();
+
